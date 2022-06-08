@@ -1,6 +1,11 @@
 'use strict';
 
 {
+  const overlay = document.querySelector('.overlay');
+  const modal = document.querySelector('.modal');
+  const modalClose = document.querySelector('.modal__close');
+  const btnAddGoods = document.querySelector('.panel__add-goods');
+
   const tableBody = document.querySelector('.table__body');
   const createRow = (goodsObj) => {
     const goodsParam = goodsObj;
@@ -30,6 +35,21 @@
       tableBody.insertAdjacentHTML('beforeend', createRow(item))
     });
   }
+
+  btnAddGoods.addEventListener('click', () => {
+    overlay.classList.add('active');
+  });
+  modal.addEventListener('click', event =>  {
+    event.stopPropagation();
+  })
+  modalClose.addEventListener('click', () => {
+    overlay.classList.remove('active');
+  })
+  overlay.addEventListener('click', () => {
+    overlay.classList.remove('active');
+  });
+  
+
 
   renderGoods(goods);
 }
