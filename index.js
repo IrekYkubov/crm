@@ -39,14 +39,14 @@
   btnAddGoods.addEventListener('click', () => {
     overlay.classList.add('active');
   });
-  modal.addEventListener('click', event =>  {
-    event.stopPropagation();
-  })
   modalClose.addEventListener('click', () => {
     overlay.classList.remove('active');
   })
-  overlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
+  overlay.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target === overlay) {
+      overlay.classList.remove('active');
+    }
   });
   
 
