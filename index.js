@@ -10,7 +10,7 @@
   const createRow = (goodsObj) => {
     const goodsParam = goodsObj;
     const teamplateGoods = 
-    `<tr>
+    `<tr class="table__row" data-itemid="${goodsParam.id}">
     <td class="table__cell">${goodsParam.id}</td>
     <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
       <span class="table__cell-id">id: 24601654816512</span>
@@ -48,8 +48,15 @@
       overlay.classList.remove('active');
     }
   });
-  
-
-
   renderGoods(goods);
+
+  const tableRow = document.querySelector('.table__row');
+  tableBody.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.closest('.table__btn_del')) {
+      target.closest('.table__row').remove();
+      delete goods[target.closest('.table__row').dataset.itemid - 1];
+      console.log(goods);
+    }
+  });
 }
