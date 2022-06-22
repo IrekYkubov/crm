@@ -1,6 +1,6 @@
 import elements from "./elements.js";
 import controlForm from "./controlForm.js";
-const {getTotalPrice} = controlForm;
+const {getTotalPrice,itemsIdRender} = controlForm;
 const {btnAddGoods,
   modalClose,
   overlay,
@@ -32,6 +32,7 @@ tableBody.addEventListener('click', (e) => {
     target.closest('.table__row').remove();
     delete goods[target.closest('.table__row').dataset.itemid - 1];
     crmTotalPrice.innerHTML = getTotalPrice();
+    itemsIdRender();
     console.log(goods);
   }
 });

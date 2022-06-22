@@ -22,6 +22,12 @@ modalForm.addEventListener('change', e => {
   }
 
 });
+const itemsIdRender = () => {
+  const itemsId = document.querySelectorAll('.items__id');
+  itemsId.forEach((element, id) => {
+    element.textContent = id + 1;
+  });
+}
 modalForm.addEventListener('submit', e => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -33,7 +39,7 @@ modalForm.addEventListener('submit', e => {
   crmTotalPrice.innerHTML = getTotalPrice();
   modalForm.reset();
   overlay.classList.remove('active');
-
+  itemsIdRender();
 });
 const getTotalPrice = () => {
   const totalTablePrice = document.querySelectorAll('.total__Table__Price');
@@ -48,4 +54,5 @@ crmTotalPrice.innerHTML = getTotalPrice();
 
 export default {
   getTotalPrice,
+  itemsIdRender,
 }

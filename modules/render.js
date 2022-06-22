@@ -30,7 +30,8 @@ const renderGoods = (goodsArr) => {
     tableBody.insertAdjacentHTML('beforeend', createRow(item))
   });
 }
-renderGoods(goods);
+
+window.init = renderGoods;
 export default {
   addContactData,
   createRow,
