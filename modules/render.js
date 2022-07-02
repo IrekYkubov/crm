@@ -6,7 +6,7 @@ const addContactData = contact => {
 const createRow = (goodsObj) => {
   const goodsParam = goodsObj;
   const teamplateGoods = 
-  `<tr class="table__row" data-itemid="${goodsParam.id}">
+  `<tr class="table__row" data-itemid="${goodsParam.id}" data-pic="/img/nophoto.png">
   <td class="table__cell items__id">${goodsParam.id}</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
     <span class="table__cell-id">id: ${goodsParam.vendor}</span>
