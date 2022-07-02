@@ -40,7 +40,7 @@ tableBody.addEventListener('click', (e) => {
   tableBody.addEventListener('click', (e) => {
     const target = e.target;
     if (target.closest('.table__btn_pic')) {
-      const picUrl = target.closest('.table__row').dataset.pic;
+      const picUrl = target.closest('.table__btn_pic').dataset.pic;
       const modalPic = open(picUrl, '', `width=800,height=600, top=${((screen.height-600)/2)} ,left=${((screen.width-800)/2)}`);
     };
   });
