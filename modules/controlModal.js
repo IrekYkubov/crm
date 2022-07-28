@@ -7,6 +7,8 @@ const {btnAddGoods,
   vendorCode,
   tableBody,
   crmTotalPrice,
+  modalFile,
+  modalFieldset,
 } = elements;
 const randomVendorId = () => {
   let vendorId;
@@ -37,11 +39,34 @@ tableBody.addEventListener('click', (e) => {
   }
 });
 
-  tableBody.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.closest('.table__btn_pic')) {
-      const picUrl = target.closest('.table__btn_pic').dataset.pic;
-      const modalPic = open(picUrl, '', `width=800,height=600, top=${((screen.height-600)/2)} ,left=${((screen.width-800)/2)}`);
-    };
+tableBody.addEventListener('click', (e) => {
+  const target = e.target;
+  if (target.closest('.table__btn_pic')) {
+    const picUrl = target.closest('.table__btn_pic').dataset.pic;
+    const modalPic = open(picUrl, '', `width=800,height=600, top=${((screen.height-600)/2)} ,left=${((screen.width-800)/2)}`);
+  };
+});
+
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.addEventListener('loadend', () => {
+    resolve(reader.result);
   });
-export default {}
+  reader.addEventListener('error', err => {
+    reject(err);
+  });
+  reader.readAsDataURL(file);
+});
+
+modalFile.addEventListener('change', async () => {
+  if (modalFile.files.length > 0) {
+    const src = URL.createObjectURL(modalFile.files[0]);
+    const preview = document.createElement('div');
+    preview.classList.add('preview');
+    const img = document.createElement('img');
+    const result = await toBase64(modalFile.files[0]);
+    img.src = result;
+    preview.append(img);
+    modalFieldset.append(preview);
+  }
+});

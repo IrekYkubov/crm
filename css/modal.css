@@ -63,7 +63,7 @@
     "category description"
     "units count"
     "discount price"
-    ". file"
+    "preview file"
     "file-add file-add";
   gap: 12px 24px;
   background: #FFFFFF;
@@ -125,7 +125,11 @@
 .modal__label_price {
   grid-area: price;
 }
-
+.preview {
+  grid-area: preview;
+  max-width: 250px;
+  height: auto;
+}
 
 .modal__label_file {
   grid-area: file;
@@ -142,6 +146,7 @@
   align-items: center;
   color: #FFFFFF;
   cursor: pointer;
+  max-height: 70px;
 }
 
 .image-container {

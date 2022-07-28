@@ -8,6 +8,8 @@ const modalTotalPrice = document.querySelector('.modal__total-price');
 const crmTotalPrice = document.querySelector('.crm__total-price');
 const tableBody = document.querySelector('.table__body');
 const itemsId = document.querySelectorAll('.items__id');
+const modalFile = document.querySelector('.modal__file');
+const modalFieldset = document.querySelector('.modal__fieldset');
 
 export default {
   overlay,
@@ -19,4 +21,6 @@ export default {
   modalTotalPrice,
   crmTotalPrice,
   tableBody,
+  modalFile,
+  modalFieldset,
 }
