@@ -130,7 +130,11 @@
   max-width: 250px;
   height: auto;
 }
-
+.file__danger {
+  color: #ff5555;
+  text-transform: uppercase;
+  font-size: 14px;
+}
 .modal__label_file {
   grid-area: file;
   font-weight: 600;

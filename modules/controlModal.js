@@ -60,13 +60,20 @@ const toBase64 = file => new Promise((resolve, reject) => {
 
 modalFile.addEventListener('change', async () => {
   if (modalFile.files.length > 0) {
-    const src = URL.createObjectURL(modalFile.files[0]);
-    const preview = document.createElement('div');
-    preview.classList.add('preview');
-    const img = document.createElement('img');
-    const result = await toBase64(modalFile.files[0]);
-    img.src = result;
-    preview.append(img);
-    modalFieldset.append(preview);
+    if (modalFile.files[0].size < 1048576) {
+      const src = URL.createObjectURL(modalFile.files[0]);
+      const preview = document.createElement('div');
+      preview.classList.add('preview');
+      const img = document.createElement('img');
+      const result = await toBase64(modalFile.files[0]);
+      img.src = result;
+      preview.append(img);
+      modalFieldset.append(preview);
+    } else {
+      const preview = document.createElement('div');
+      preview.classList.add('preview', 'file__danger');
+      preview.textContent = 'Изображение не должно превышать размер 1 мб';
+      modalFieldset.append(preview);
+    }
   }
 });
