@@ -1,7 +1,12 @@
 import elements from "./elements.js";
-const {tableBody} = elements;
-const addContactData = contact => {
-  goods.push(contact);
+import fetchRequest from "./fetchReq.js";
+const {tableBody, categoryList} = elements;
+const addContactData = async (contact) => {
+  // goods.push(contact);
+  const result = await fetchRequest('goods', {
+    method: 'POST',
+    body: contact,
+  });
 };
 const createRow = (goodsObj) => {
   const goodsParam = goodsObj;
@@ -9,7 +14,6 @@ const createRow = (goodsObj) => {
   `<tr class="table__row" data-itemid="${goodsParam.id}">
   <td class="table__cell items__id">${goodsParam.id}</td>
   <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
-    <span class="table__cell-id">id: ${goodsParam.vendor}</span>
     ${goodsParam.title}</td>
   <td class="table__cell table__cell_left">${goodsParam.category}</td>
   <td class="table__cell">${goodsParam.units}</td>
@@ -17,18 +21,19 @@ const createRow = (goodsObj) => {
   <td class="table__cell">$${goodsParam.price}</td>
   <td class="table__cell total__Table__Price">$${goodsParam.price * goodsParam.count}</td>
   <td class="table__cell table__cell_btn-wrapper">
-    <button class="table__btn table__btn_pic" data-pic="/img/nophoto.png"></button>
+    <button class="table__btn table__btn_pic" data-pic="${goodsParam.images.big}"></button>
     <button class="table__btn table__btn_edit"></button>
     <button class="table__btn table__btn_del"></button>
   </td>
 </tr>`;
 return teamplateGoods;
 }
-const renderGoods = (goodsArr) => {
+const renderGoods = (err, goodsArr) => {
   const goodsPak = goodsArr;
   goodsPak.forEach(item => {
-    tableBody.insertAdjacentHTML('beforeend', createRow(item))
+    tableBody.insertAdjacentHTML('beforeend', createRow(item));
   });
+
 }
 
 window.init = renderGoods;

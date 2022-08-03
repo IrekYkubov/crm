@@ -41,7 +41,7 @@
           <table class="goods__table table">
             <thead class="table__header">
               <tr class="table__header-row">
-                <th class="table__header-cell">№</th>
+                <th class="table__header-cell">ID</th>
                 <th class="table__header-cell table__header-cell_left">Наименование</th>
                 <th class="table__header-cell table__header-cell_left">Категория</th>
                 <th class="table__header-cell">ед/изм</th>
@@ -109,8 +109,10 @@
 
           <label class="modal__label modal__label_category" for="category">
             <span class="modal__text">Категория</span>
-            <input class="modal__input" type="text" name="category" id="category" required>
+            <input class="modal__input" type="text" name="category" id="category" list="category-list" required>
           </label>
+          <datalist id="category-list">
+          </datalist>
 
           <label class="modal__label modal__label_description" for="description">
             <span class="modal__text">Описание</span>
@@ -153,6 +155,14 @@
           <button class="modal__submit" type="submit">Добавить товар</button>
         </div>
       </form>
+    </div>
+
+    <div class="overlay__modal modal err">
+      <button class="modal__close err-close">
+        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="m2 2 20 20M2 22 22 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+      </button>
+      <h2>Что то пошло не так</h2>
     </div>
   </div>
 

@@ -1,6 +1,8 @@
 import elements from "./elements.js";
 import controlForm from "./controlForm.js";
-const {getTotalPrice,itemsIdRender} = controlForm;
+import fetchRequest from "./fetchReq.js";
+import { toBase64 } from "./base64.js";
+const {getTotalPrice, goodsForm} = controlForm;
 const {btnAddGoods,
   modalClose,
   overlay,
@@ -9,33 +11,64 @@ const {btnAddGoods,
   crmTotalPrice,
   modalFile,
   modalFieldset,
+  categoryList,
+  modalTitle,
+  modalForm
 } = elements;
 const randomVendorId = () => {
   let vendorId;
-  return vendorId = Math.floor(Math.random() * 1e14);
+  return vendorId = Math.floor(Math.random() * 1e10);
 }
-btnAddGoods.addEventListener('click', () => {
+const renderCategory = (err, catArr) => {
+  const catPak = catArr;
+  catPak.forEach(item => {
+    categoryList.insertAdjacentHTML('beforeend', `<option value="${item.title}">${item.title}</option>`);
+  });
+}
+btnAddGoods.addEventListener('click', async () => {
   overlay.classList.add('active');
+  modalTitle.textContent = 'Дабавить товар'
   vendorCode.textContent = randomVendorId();
+  const result = await fetchRequest('category', {
+    method: 'get',
+    callback: renderCategory,
+  });
+});
+tableBody.addEventListener('click', async (e) => {
+  const target = e.target;
+  if (target.closest('.table__btn_edit')) {
+    const idElement = target.closest('.table__row').dataset.itemid;
+    const result = await fetchRequest(`goods/${idElement}`, {
+      method: 'get',
+      callback: goodsForm,
+    });
+    overlay.classList.add('active');
+  }
 });
 modalClose.addEventListener('click', () => {
+  modalForm.reset();
   overlay.classList.remove('active');
 })
 overlay.addEventListener('click', (e) => {
   const target = e.target;
   if (target === overlay) {
+    modalForm.reset();
     overlay.classList.remove('active');
   }
 });
 const tableRow = document.querySelector('.table__row');
-tableBody.addEventListener('click', (e) => {
+tableBody.addEventListener('click', async (e) => {
   const target = e.target;
   if (target.closest('.table__btn_del')) {
+    const idElement = target.closest('.table__row').dataset.itemid;
     target.closest('.table__row').remove();
-    delete goods[target.closest('.table__row').dataset.itemid - 1];
+    const result = await fetchRequest(`goods/${idElement}`, {
+      method: 'DELETE',
+    });
+    // delete goods[target.closest('.table__row').dataset.itemid];
+    
     crmTotalPrice.innerHTML = getTotalPrice();
-    itemsIdRender();
-    console.log(goods);
+    // itemsIdRender();
   }
 });
 
@@ -45,17 +78,6 @@ tableBody.addEventListener('click', (e) => {
     const picUrl = target.closest('.table__btn_pic').dataset.pic;
     const modalPic = open(picUrl, '', `width=800,height=600, top=${((screen.height-600)/2)} ,left=${((screen.width-800)/2)}`);
   };
-});
-
-const toBase64 = file => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.addEventListener('loadend', () => {
-    resolve(reader.result);
-  });
-  reader.addEventListener('error', err => {
-    reject(err);
-  });
-  reader.readAsDataURL(file);
 });
 
 modalFile.addEventListener('change', async () => {

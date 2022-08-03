@@ -7,6 +7,19 @@
 
 }
 
+.modal.err {
+  position: absolute;
+  max-width: 350px;
+  max-height: 350px;
+  padding: 20px;
+  display: none;
+}
+
+.modal.err h2 {
+  margin-top: 40%;
+}
+
+
 .modal_top {
   display: flex;
   justify-content: space-between;
