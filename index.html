@@ -10,9 +10,9 @@
   <link rel="preload" href="fonts/inter-v7-latin_cyrillic-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-v7-latin_cyrillic-700.woff2" as="font" type="font/woff2" crossorigin>
 
+
+  <script type="module" src="script/index.js"></script>
   <link rel="stylesheet" href="css/index.css">
-  <script src="goods.js" defer></script>
-  <script src="index.js" type="module"></script>
   <title>CRM</title>
 </head>
 
@@ -71,7 +71,7 @@
   </section>
 
 
-  <div class="overlay">
+  <div class="overlay active">
     <div class="overlay__modal modal">
       <button class="modal__close">
         <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +81,7 @@
       <div class="modal_top">
         <h2 class="modal__title">Добавить товар</h2>
         <div class="modal__vendor-code vendor-code">
-          <p class="vendor-code__wrapper">id: <span class="vendor-code__id"></span></p>
+          <p class="vendor-code__wrapper">id: <span class="vendor-code__id">24601654816512</span></p>
           <button class="vendor-code__btn">
             <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#a)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -103,16 +103,14 @@
 
           <label class="modal__label modal__label_name" for="name">
             <span class="modal__text">Наименование</span>
-            <input class="modal__input" type="text" name="title" id="name" required>
+            <input class="modal__input" type="text" name="name" id="name" required>
           </label>
 
 
           <label class="modal__label modal__label_category" for="category">
             <span class="modal__text">Категория</span>
-            <input class="modal__input" type="text" name="category" id="category" list="category-list" required>
+            <input class="modal__input" type="text" name="category" id="category" required>
           </label>
-          <datalist id="category-list">
-          </datalist>
 
           <label class="modal__label modal__label_description" for="description">
             <span class="modal__text">Описание</span>
@@ -128,7 +126,7 @@
             <label class="modal__text" for="discount">Дисконт</label>
             <div class="modal__checkbox-wrapper">
               <input class="modal__checkbox" type="checkbox" name="discount" id="discount">
-              <input class="modal__input modal__input_discount" type="text" name="discount_count" disabled>
+              <input class="modal__input modal__input_discount" type="number" name="discount_count" disabled>
             </div>
           </div>
 
@@ -149,20 +147,12 @@
 
         <div class="modal__footer">
           <label class="modal__total">Итоговая стоимость:
-            <output class="modal__total-price" name="total"></output>
+            <output class="modal__total-price" name="total">$ 900.00</output>
           </label>
 
           <button class="modal__submit" type="submit">Добавить товар</button>
         </div>
       </form>
-    </div>
-
-    <div class="overlay__modal modal err">
-      <button class="modal__close err-close">
-        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="m2 2 20 20M2 22 22 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
-      </button>
-      <h2>Что то пошло не так</h2>
     </div>
   </div>
 

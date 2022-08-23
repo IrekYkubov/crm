@@ -7,19 +7,6 @@
 
 }
 
-.modal.err {
-  position: absolute;
-  max-width: 350px;
-  max-height: 350px;
-  padding: 20px;
-  display: none;
-}
-
-.modal.err h2 {
-  margin-top: 40%;
-}
-
-
 .modal_top {
   display: flex;
   justify-content: space-between;
@@ -76,7 +63,7 @@
     "category description"
     "units count"
     "discount price"
-    "preview file"
+    ". file"
     "file-add file-add";
   gap: 12px 24px;
   background: #FFFFFF;
@@ -138,16 +125,8 @@
 .modal__label_price {
   grid-area: price;
 }
-.preview {
-  grid-area: preview;
-  max-width: 250px;
-  height: auto;
-}
-.file__danger {
-  color: #ff5555;
-  text-transform: uppercase;
-  font-size: 14px;
-}
+
+
 .modal__label_file {
   grid-area: file;
   font-weight: 600;
@@ -163,7 +142,6 @@
   align-items: center;
   color: #FFFFFF;
   cursor: pointer;
-  max-height: 70px;
 }
 
 .image-container {
